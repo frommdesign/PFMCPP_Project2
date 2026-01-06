@@ -200,7 +200,7 @@ int main() {
   auto carRented = rentACar(6, 2);
 
   // 1)
-  float finalGain = ampGain(0.6, -0.23, false);
+  float finalGain = ampGain(0.6f, -0.23f, false);
 
   // 2)
   bool enabled = outputEnabled(false, 14);
@@ -215,19 +215,19 @@ int main() {
   updateOsc(440);
 
   // 6)
-  double signal = signalCalc(0.135305239847, 33.32523);
+  double signal = signalCalc(0.135305239847f, 33.32523f);
 
   // 7)
-  float dist = vectorDistance(0.44, 1.33388, -0.0043);
+  float dist = vectorDistance(0.44f, 1.33388f, -0.0043f);
 
   // 8)
-  updateEnvelope(0.34, 0.113);
+  updateEnvelope(0.34f, 0.113f);
 
   // 9)
   int pos = relativePosition(311, 56);
 
   // 10)
-  bool isBatteryCharged = batteryCharged(1.76, 2.5);
+  bool isBatteryCharged = batteryCharged(1.76f, 2.5f);
 
   ignoreUnused(carRented, finalGain, enabled, seconds, signal, dist, pos,
                isBatteryCharged);
