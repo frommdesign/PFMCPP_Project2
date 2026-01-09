@@ -12,25 +12,25 @@ video: Chapter 2 - Part 3
 
  Purpose:  This project will teach you how to declare variables and free functions.  
  This will be the first project where the code you write will be compiled and you will be responsible for making sure it compiles before submitting it for review.
- 
- 
+
+
  1) Write down the names of the 6 major primitive types available in C++  here:
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
+ int
+ float
+ double
+ bool
+ char
+ void
+
+
+
 2) for each primitive type, write out 3 variable declarations inside the variableDeclaration() function on line 59.
     a) give each variable declaration an initial value
         - just ignore wchar_t. you do not need to declare 3 variables of type 'wchar_t'
         - 'void' is a return type. you do not need to declare 3 variables of type 'void'.
     b) at the end of the function, call ignoreUnused once and pass all of your variables to it. see line 71 for an example
- 
+
 3) Declare 10 free functions
     each declaration should have a random number of parameters in the function parameter list.
     When naming your parameters, choose names that are relevant to the task implied by the function's name.
@@ -48,14 +48,14 @@ video: Chapter 2 - Part 3
 8) consult the coding style guide found in the Readme.MD and adjust the formatting of your 10 functions.  At this point, you might have something that looks like this:
     float someFunc2(bool yes, int bar=2) { ignoreUnused(yes, bar ); return { }; }
     This does not conform with the coding standard for this course (check the Readme.MD) and needs to be corrected
-    
+
 9) in the main function at the end: 
     for each of those functions declared, 
         a) write out how the function would look if called with correct arguments
         b) if the function returned anything, store it in a local variable via the 'auto' keyword.
         c) pass the local variables to ignoreUnused() as you did in 2b)
     see main() for an example of this.
- 
+
 10) click the [run] button.  Clear up any errors or warnings as best you can.
  */
 
@@ -64,10 +64,24 @@ void variableDeclarations()
 {
     //example:
     int number = 2; //declaration of a variable named "number", that uses the primitive type 'int', and the variable's initial value is '2'
-    
+    int level = 4;
+    int step = 1;
 
-    
-    ignoreUnused(number); //passing each variable declared to the ignoreUnused() function
+    float duration = 0.4f;
+    float amp = 0.3333f;
+    float freq = 22.5548f;
+
+    double phase = 0.44538;
+    double attackTime = 1.435;
+    double decayTime = 2.2214;
+
+    bool outputEnabled = true;
+    bool enableStep = false;
+    bool buttonPressed = false;
+
+
+    ignoreUnused(number, level, step, duration, amp, freq, phase, attackTime, 
+        decayTime, outputEnabled, enableStep, buttonPressed); //passing each variable declared to the ignoreUnused() function
 }
 
 /*
@@ -84,48 +98,95 @@ bool rentACar(int rentalDuration, int carType = 0)  //function declaration with 
 /*
  1)
  */
+float getAmpGain(float knobValue, float lfoValue, bool outputEnabled = true) 
+{
+    ignoreUnused(knobValue, lfoValue, outputEnabled);
+    return {};
+}
 
 /*
  2)
  */
+bool checkOutputEnabled(bool buttonPressed, int presetNumber) 
+{
+    ignoreUnused(buttonPressed, presetNumber);
+    return {};
+}
 
 /*
  3)
  */
+void updateUserAccount(bool signedIn, bool paymentComplete, int age) 
+{
+    ignoreUnused(signedIn, paymentComplete, age);
+}
 
 /*
  4)
  */
+int getTimeInSeconds(int hours, int minutes, int seconds) 
+{
+    ignoreUnused(hours, minutes, seconds);
+    return {};
+}
 
 /*
  5)
  */
+void updateOsc(float freq, float phase = 0.f) 
+{ 
+    ignoreUnused(freq, phase); 
+}
 
 /*
  6)
  */
+double calculateSignal(float signalOne, float signalTwo) 
+{
+    ignoreUnused(signalOne, signalTwo);
+    return {};
+}
 
 /*
  7)
  */
+float getVectorDistance(float xOffset, float yOffset, float zOffset) 
+{
+    ignoreUnused(xOffset, yOffset, zOffset);
+    return {};
+}
 
 /*
  8)
  */
+void updateEnvelope(float attackDuration, float decayDuration) 
+{
+    ignoreUnused(attackDuration, decayDuration);
+}
 
 /*
  9)
  */
+int calculateRelativePosition(int currentPosition, int startPosition = 0) 
+{
+    ignoreUnused(currentPosition, startPosition);
+    return {};
+}
 
 /*
  10)
  */
+bool calculateBatteryCharge(float currentLevel, float totalCapacity = 1.0f) 
+{
+    ignoreUnused(currentLevel, totalCapacity);
+    return {};
+}
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 
  Commit your changes by clicking on the Source Control panel on the left, entering a message, and click [Commit and push].
- 
+
  If you didn't already: 
     Make a pull request after you make your first commit
     pin the pull request link and this repl.it link to our DM thread in a single message.
@@ -139,29 +200,39 @@ int main()
 {
     //example of calling that function, storing the value, and passing it to ignoreUnused at the end of main()
     auto carRented = rentACar(6, 2); 
-    
-    //1)
-    
-    //2)
-    
-    //3)
-    
-    //4)
-    
-    //5)
-    
-    //6)
-    
-    //7)
-    
-    //8)
-    
-    //9)
-    
-    //10)
-    
-    
-    ignoreUnused(carRented);
+
+    // 1)
+    float finalGain = getAmpGain(0.6f, -0.23f, false);
+
+    // 2)
+    bool enabled = checkOutputEnabled(false, 14);
+
+    // 3)
+    updateUserAccount(true, true, 23);
+
+    // 4)
+    int seconds = getTimeInSeconds(0, 44, 36);
+
+    // 5)
+    updateOsc(440);
+
+    // 6)
+    double signal = calculateSignal(0.135305239847f, 33.32523f);
+
+    // 7)
+    float dist = getVectorDistance(0.44f, 1.33388f, -0.0043f);
+
+    // 8)
+    updateEnvelope(0.34f, 0.113f);
+
+    // 9)
+    int pos = calculateRelativePosition(311, 56);
+
+    // 10)
+    bool isBatteryCharged = calculateBatteryCharge(1.76f, 2.5f);
+
+
+    ignoreUnused(carRented, finalGain, enabled, seconds, signal, dist, pos, isBatteryCharged);
     std::cout << "good to go!" << std::endl;
     return 0;    
 }
